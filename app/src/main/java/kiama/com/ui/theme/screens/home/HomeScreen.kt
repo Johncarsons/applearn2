@@ -19,9 +19,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import kiama.com.navigation.ROUTE_CALC
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(navController:NavHostController) {
     Column (
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -35,7 +38,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             color = Color.Black
         )
         Spacer(modifier = Modifier.height(50.dp))
-        Button(onClick = {/*TODO*/},
+        Button(onClick = { navController.navigate(ROUTE_CALC)},
             modifier = Modifier.width(300.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)) {
             Text("Calculator",
@@ -68,7 +71,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
 @Composable
 private fun Homeprev(){
-    HomeScreen()
+    HomeScreen(rememberNavController())
 
 
 }

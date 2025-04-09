@@ -22,15 +22,15 @@ fun AppNavHost(modifier: Modifier = Modifier,
         modifier = modifier,
         startDestination = startDestination){
         composable (ROUTE_HOME){
-            HomeScreen()}
+            HomeScreen(navController)}
         composable (ROUTE_CALC){
-            Calculator_screen()
+            Calculator_screen(navController)
         }
         composable (ROUTE_INTENT){
-            Intent_screen()
+            Intent_screen(navController)
         }
         composable (ROUTE_WEB){
-            Web_screen()
+            Web_screen(navController)
         }
 
     }

@@ -1,5 +1,6 @@
 package kiama.com.ui.theme.screens.calc
 
+import android.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,15 +41,21 @@ import java.nio.file.WatchEvent
 fun Calculator_screen(navController:NavHostController) {
     var firstnum by remember { mutableStateOf(TextFieldValue()) }
     var secnum by remember { mutableStateOf(TextFieldValue()) }
-    var text by remember { mutableStateOf(TextFieldValue()) }
+    var answer by remember { mutableStateOf("") }
     Column (verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
             .background(color = Color.Cyan)){
 
         Text("CALCULATOR",
+            color = Color.Red,
+            fontSize = 60.sp,
+            fontFamily = FontFamily.Cursive
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Text("Answer: $answer",
             color = Color.Red,
             fontSize = 60.sp,
             fontFamily = FontFamily.Cursive
@@ -74,17 +83,35 @@ fun Calculator_screen(navController:NavHostController) {
             .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            OutlinedButton(onClick = {/*TODO*/},
+            OutlinedButton(onClick = {
+                val myfirstnum=firstnum.text.trim()
+                val mysecnum=secnum.text.trim()
+                if (myfirstnum.isEmpty()|| mysecnum.isEmpty()){
+                    answer="Please fill in all sections"
+                }else{
+                    val myanswer=myfirstnum.toDouble()+mysecnum.toDouble()
+                    answer=myanswer.toString()
+                }
+            },
 //                modifier = Modifier.width(50.dp),
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Text("+",
                     fontSize = 30.sp,
-                    color = Color.Red)
+                    color = Color.Red,)
             }
             Spacer(modifier = Modifier.width(20.dp))
-            OutlinedButton(onClick = {/*TODO*/},
+            OutlinedButton(onClick = {
+                val myfirstnum=firstnum.text.trim()
+                val mysecnum=secnum.text.trim()
+                if (myfirstnum.isEmpty()|| mysecnum.isEmpty()){
+                    answer="Please fill in all sections"
+                }else{
+                    val myanswer=myfirstnum.toDouble()-mysecnum.toDouble()
+                    answer=myanswer.toString()
+                }
+            },
 //                modifier = Modifier.width(50.dp),
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(20.dp)
@@ -94,7 +121,16 @@ fun Calculator_screen(navController:NavHostController) {
                     color = Color.Red)
             }
             Spacer(modifier = Modifier.width(20.dp))
-            OutlinedButton(onClick = {/*TODO*/},
+            OutlinedButton(onClick = {
+                val myfirstnum=firstnum.text.trim()
+                val mysecnum=secnum.text.trim()
+                if (myfirstnum.isEmpty()|| mysecnum.isEmpty()){
+                    answer="Please fill in all sections"
+                }else{
+                    val myanswer=myfirstnum.toDouble()/mysecnum.toDouble()
+                    answer=myanswer.toString()
+                }
+            },
 //                modifier = Modifier.width(50.dp),
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(20.dp)
@@ -104,7 +140,16 @@ fun Calculator_screen(navController:NavHostController) {
                     color = Color.Red)
             }
             Spacer(modifier = Modifier.width(20.dp))
-            OutlinedButton(onClick = {/*TODO*/},
+            OutlinedButton(onClick = {
+                val myfirstnum=firstnum.text.trim()
+                val mysecnum=secnum.text.trim()
+                if (myfirstnum.isEmpty()|| mysecnum.isEmpty()){
+                    answer="Please fill in all sections"
+                }else{
+                    val myanswer=myfirstnum.toDouble()+mysecnum.toDouble()
+                    answer=myanswer.toString()
+                }
+            },
 //                modifier = Modifier.width(50.dp),
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 shape = RoundedCornerShape(20.dp)
@@ -115,6 +160,7 @@ fun Calculator_screen(navController:NavHostController) {
             }
 
         }
+
 //        OutlinedButton(onClick = {/*TODO*/},
 //            modifier = Modifier.width(50.dp),
 //            colors = ButtonDefaults.buttonColors(Color.Green),

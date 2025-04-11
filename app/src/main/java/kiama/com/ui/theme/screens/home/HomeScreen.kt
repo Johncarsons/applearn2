@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kiama.com.navigation.ROUTE_CALC
+import kiama.com.navigation.ROUTE_INTENT
+import kiama.com.navigation.ROUTE_WEB
 
 @Composable
 fun HomeScreen(navController:NavHostController) {
@@ -30,7 +32,7 @@ fun HomeScreen(navController:NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)){
+            .background(Color.Cyan)){
         Text("Home Screen",
             fontSize = 50.sp,
             fontFamily = FontFamily.Cursive,
@@ -47,7 +49,7 @@ fun HomeScreen(navController:NavHostController) {
                 color = Color.Red)
         }
         Spacer(modifier = Modifier.height(50.dp))
-        Button(onClick = {/*TODO*/},
+        Button(onClick = {navController.navigate(ROUTE_INTENT)},
             modifier = Modifier.width(300.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)) {
             Text("Intent",
@@ -56,7 +58,7 @@ fun HomeScreen(navController:NavHostController) {
                 color = Color.Red)
         }
         Spacer(modifier = Modifier.height(50.dp))
-        Button(onClick = {/*TODO*/},
+        Button(onClick = {navController.navigate(ROUTE_WEB)},
             modifier = Modifier.width(300.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Black)) {
             Text("Web",
